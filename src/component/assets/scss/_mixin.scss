@@ -1,0 +1,182 @@
+//mixin 정의
+
+// 반응형 분기점
+@mixin container {
+  @media (max-width: #{$container-width}) {
+    @content;
+  }
+}
+@mixin tablet {
+  @media (max-width: #{$breakpoint-pc - 1px}) {
+    @content;
+  }
+}
+@mixin mobile {
+  @media (max-width: #{$breakpoint-tablet - 1px}) {
+    @content;
+  }
+}
+// 320px 까지 맞출시 사용
+@mixin smallest {
+  @media (min-width:#{$breakpoint-smallest}) and (max-width:#{$breakpoint-mobile - 1px}) {
+    @content;
+  }
+}
+
+// flex-box
+$flex-map: (
+  start: flex-start,
+  end: flex-end,
+  between: space-between,
+  around: space-around,
+  stretch: stretch,
+  center: center,
+);
+
+@function _get-flex-value($key) {
+  @return map-get($flex-map, $key);
+}
+
+@mixin d-flex($jc: start, $ai: stretch) {
+  display: flex;
+  align-items: _get-flex-value($ai);
+  justify-content: _get-flex-value($jc);
+}
+
+// margin-bottom
+@mixin mb($margin-bottom) {
+  margin-bottom: $margin-bottom;
+
+  @include mobile {
+    margin-bottom: calc($margin-bottom / 2);
+  }
+}
+
+// padding
+@mixin pd-top-bottom($top, $bottom) {
+  padding: {
+    top: $top;
+    bottom: $bottom;
+  }
+
+  @include mobile {
+    padding: {
+      top: calc($top / 2);
+      bottom: calc($bottom / 2);
+    }
+  }
+}
+
+// position 중앙정렬
+// 좌우
+@mixin position-center-x {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+// 상하
+@mixin position-center-y {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+// 상하좌우
+@mixin position-center-xy {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+// border
+@mixin border($border: 1px, $border-color: #ddd) {
+  border: $border solid $border-color;
+}
+
+// placeholder
+@mixin placeholder($color: #666, $font-size: 1rem) {
+  &::-webkit-input-placeholder {
+    // Chrome/Opera/Safari
+    font-size: $font-size;
+    color: $color;
+    opacity: 1;
+  }
+  &::-moz-placeholder {
+    // Firefox 19+
+    font-size: $font-size;
+    color: $color;
+    opacity: 1;
+  }
+  &:-ms-input-placeholder {
+    // IE 10+
+    font-size: $font-size;
+    color: $color;
+    opacity: 1;
+  }
+  &:-moz-placeholder {
+    // Firefox 18-
+    font-size: $font-size;
+    color: $color;
+    opacity: 1;
+  }
+  &:placeholder {
+    // Firefox 18-
+    font-size: $font-size;
+    color: $color;
+    opacity: 1;
+  }
+}
+// ellipsis
+@mixin ellipsis($line: 1) {
+  @if ($line == 1) {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  } @else {
+    display: -webkit-box;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: $line;
+  }
+}
+// 폼요소초기화
+@mixin appearance-none {
+  -moz-appearance: none; /* Firefox */
+  -webkit-appearance: none; /* Safari and Chrome */
+  appearance: none; /* 화살표 없애기 공통*/
+}
+
+@mixin button-s {
+  @include d-flex(center, center);
+  height: 30px;
+  padding: 0 13px;
+  border-radius: 5px;
+  font-size: 1.3rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+@mixin button-l {
+  @include d-flex(center, center);
+  height: 42px;
+  border-radius: 5px;
+  font-size: 1.5rem;
+  font-weight: 500;
+  text-align: center;
+}
+
+@mixin custom-scroll {
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 6px;
+    background: none;
+    border-radius: 9px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color-border;
+    border-radius: 9px;
+  }
+}

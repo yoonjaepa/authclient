@@ -1,0 +1,147 @@
+// 전체 페이지 레이아웃
+#wrap {
+  @include d-flex(start, stretch);
+
+  .gnb {
+    width: 260px;
+    padding: 16px 20px;
+    box-sizing: border-box;
+  }
+
+  .contentArea {
+    @include custom-scroll;
+    width: calc(100% - 260px);
+    height: 100vh;
+    padding: 24px;
+    background: $color-background;
+    box-sizing: border-box;
+  }
+}
+
+// gnb
+.gnb {
+  // 로고
+  .logo {
+    margin-bottom: 33px;
+    a {
+      display: block;
+    }
+    img {
+      width: 92px;
+    }
+  }
+
+  &-inner {
+    @include d-flex(between, start);
+    flex-direction: column;
+    height: calc(100% - 65px);
+  }
+
+  // 메뉴
+  &-menu {
+    width: 100%;
+    &__item {
+      height: 46px;
+      margin-bottom: 8px;
+      transition: all 0.3s;
+      overflow: hidden;
+
+      &:first-of-type {
+        height: auto;
+      }
+
+      &--link {
+        display: block;
+        padding: 15px 20px;
+        background: url($img + "nav_arrow.svg") no-repeat right 14px center;
+        border-radius: 6px;
+        font-size: 1.6rem;
+        font-weight: 700;
+
+        // 활성
+        &.active {
+          background: url($img + "nav_right_arrow.svg") no-repeat right 14px
+            center $color-border-table;
+        }
+      }
+    }
+
+    // lnb
+    &__lnb {
+      margin-top: 8px;
+
+      &--item {
+        margin-bottom: 8px;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        // 활성
+        &.active a {
+          background: $color-button-blue;
+          color: $color-white;
+        }
+
+        a {
+          display: block;
+          padding: 15px 20px;
+          border-radius: 6px;
+          font-size: 1.6rem;
+        }
+      }
+    }
+  }
+
+  // 사용자 정보
+  .user-info {
+    @include d-flex(center, center);
+    margin-bottom: 30px;
+    p {
+      margin-right: 4px;
+      font-size: 1.6rem;
+    }
+    &__btn {
+      width: 24px;
+      height: 24px;
+      background: url($img + "setting_icon.svg") no-repeat center;
+      text-indent: -9999px;
+      overflow: hidden;
+    }
+  }
+
+  // 로그아웃 버튼
+  .logout-btn {
+    margin: 0 auto;
+    margin-bottom: 30px;
+  }
+}
+
+// 본문 공통
+.contentArea {
+  // 상단 헤더
+  &__header {
+    @include d-flex(between, center);
+    margin-bottom: 46px;
+
+    h3 {
+      @include d-flex(start, center);
+      font-size: 2rem;
+      font-weight: 700;
+
+      img {
+        width: 24px;
+        height: 24px;
+        margin-right: 16px;
+      }
+    }
+  }
+  // 콘텐츠
+  &__section {
+    h3 {
+      margin-bottom: 20px;
+      font-size: 2rem;
+      font-weight: 500;
+    }
+  }
+}

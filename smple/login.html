@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>로그인</title>
+    <link rel="stylesheet" href="assets/css/main.css" />
+  </head>
+  <body>
+    <div class="h-full bg-blue login-wrap">
+      <div class="login">
+        <!-- 로고 -->
+        <h1 class="login__logo">
+          <img src="assets/images/logo.png" alt="로고" />
+          통합 메세지 관리 시스템
+        </h1>
+        <!-- // 로고 -->
+
+        <!-- 입력필드 -->
+        <div class="login-input-box">
+          <!-- id -->
+          <div class="common-input login-input-box__id">
+            <label for="userId" class="hidden">아이디 입력</label>
+            <input
+              type="text"
+              id="userId"
+              placeholder="이메일(아이디) 주소 입력"
+            />
+          </div>
+          <!-- // id -->
+          <!-- pw -->
+          <div class="common-input login-input-box__pw">
+            <label for="userPw" class="hidden">비밀번호 입력</label>
+            <input type="password" id="userPw" placeholder="비밀번호 입력" />
+            <!-- 눈 버튼 -->
+            <button type="button" class="eye-btn visible-btn">
+              비밀번호 보이기
+            </button>
+            <!-- // 눈 버튼 -->
+          </div>
+          <!-- // pw -->
+          <!-- 설명글 -->
+          <p class="login-input-box__notice">
+            ※비밀번호가 기억나지 않으실 경우 관리자에게 문의바랍니다.
+          </p>
+          <!-- // 설명글 -->
+          <!-- 기억하기 -->
+          <div class="common-check">
+            <input type="checkbox" id="idSave" />
+            <label for="idSave">아이디 기억하기</label>
+          </div>
+          <!-- //  기억하기 -->
+        </div>
+        <!-- // 입력필드 -->
+
+        <!-- 로그인 버튼 -->
+        <button type="button" class="blue-btn login-btn">로그인</button>
+        <!-- // 로그인 버튼 -->
+
+        <!-- 카피라이트 -->
+        <p class="copyright">copyrihgt &copy; KT META All rights reserved.</p>
+        <!-- // 카피라이트 -->
+      </div>
+    </div>
+    <script src="assets/js/login.js"></script>
+  </body>
+</html>

@@ -1,0 +1,684 @@
+// 리더기는 읽고 화면에서는 숨기기
+.hidden {
+  position: absolute !important;
+  display: block;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  border: 0 !important;
+  overflow: hidden !important;
+  clip: rect(0 0 0 0) !important;
+}
+
+// skipnav tab키로 접근
+#skipNav {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 99999999;
+  width: 100%;
+  overflow: hidden;
+
+  a {
+    position: absolute;
+    left: -99999px;
+    display: block;
+    height: 1px;
+    margin-bottom: -1px;
+    overflow: hidden;
+    text-align: center;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+
+    &:hover,
+    &:focus {
+      position: relative;
+      left: 0;
+      height: auto;
+      padding: 10px 0;
+      background: #000;
+    }
+  }
+}
+
+// 컨텐츠 크기
+.container-wrap {
+  width: #{$container-width};
+  margin: 0 auto;
+  box-sizing: border-box;
+
+  @include container {
+    width: 96%;
+  }
+}
+
+// font-weight
+.font-70 {
+  font-weight: 700;
+}
+.font-50 {
+  font-weight: 500;
+}
+.font-30 {
+  font-weight: 300;
+}
+
+// font-color
+.white-color {
+  color: $color-white !important;
+}
+
+// 텍스트 정렬
+.text-center {
+  text-align: center;
+}
+
+.h-full {
+  height: 100vh;
+}
+.h-100 {
+  height: 100%;
+}
+.bg-blue {
+  background: $color-background;
+}
+
+// 공통 input
+.common-input {
+  input {
+    @include appearance-none;
+    @include placeholder($color-border, 1.4rem);
+    display: block;
+    width: 100%;
+    padding: 16px;
+    border: 1px solid $color-border;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    box-sizing: border-box;
+  }
+}
+
+// 공통 checkbox
+.common-check {
+  input {
+    @include appearance-none;
+    @include position-center-xy;
+    width: 1px;
+    height: 1px;
+
+    & + label {
+      position: relative;
+      display: block;
+      height: 24px;
+      padding-left: 32px;
+      font-size: 1.4rem;
+      line-height: 24px;
+
+      &::after {
+        @include position-center-y;
+        left: 0;
+        content: "";
+        display: block;
+        width: 24px;
+        height: 24px;
+        background: url($img + "checkbox.svg") no-repeat center;
+        background-size: cover;
+        box-sizing: border-box;
+      }
+    }
+
+    // 체크시
+    &:checked + label::after {
+      background: url($img + "checkbox_check.svg") no-repeat center;
+      background-size: cover;
+    }
+
+    // focus
+    &:focus + label::after {
+      border: 1px solid $color-black;
+    }
+  }
+}
+
+// 공통 radio
+.common-radio {
+  input {
+    @include appearance-none;
+    @include position-center-xy;
+    width: 1px;
+    height: 1px;
+
+    & + label {
+      position: relative;
+      min-height: 24px;
+      padding-left: 32px;
+      color: $color-gray-9;
+      font-size: 1.4rem;
+      cursor: pointer;
+
+      &::after {
+        @include position-center-y;
+        left: 0;
+        content: "";
+        display: block;
+        width: 24px;
+        height: 24px;
+        border: 3px solid $color-border;
+        border-radius: 50%;
+        box-sizing: border-box;
+      }
+    }
+
+    // 체크시
+    &:checked + label {
+      color: $color-black-48;
+
+      &::before {
+        @include position-center-y;
+        left: 6px;
+        content: "";
+        width: 12px;
+        height: 12px;
+        background: $color-button-blue;
+        border-radius: 50%;
+      }
+      &::after {
+        border-color: $color-button-blue;
+      }
+    }
+
+    &:disabled {
+      &:checked + label {
+        color: $color-gray-9;
+
+        &::before {
+          background: $color-border;
+        }
+
+        &::after {
+          border-color: $color-border;
+        }
+      }
+    }
+
+    &:focus + label {
+      color: $color-black-48;
+    }
+  }
+}
+
+// 공통 toggle
+.common-toggle {
+  input {
+    @include appearance-none;
+    @include position-center-xy;
+    width: 1px;
+    height: 1px;
+
+    & + label {
+      position: relative;
+      min-height: 20px;
+      padding-left: 47px;
+      font-size: 1.4rem;
+      cursor: pointer;
+
+      &::before {
+        @include position-center-y;
+        left: -3px;
+        content: "";
+        display: block;
+        width: 20px;
+        height: 20px;
+        background: $color-border-table;
+        border-radius: 50%;
+        transition: all 0.2s;
+        z-index: 2;
+      }
+
+      &::after {
+        @include position-center-y;
+        left: 0px;
+        content: "";
+        display: block;
+        width: 34px;
+        height: 14px;
+        background: $color-border;
+        border-radius: 10px;
+        z-index: 1;
+      }
+    }
+
+    // 활성
+    &:checked + label {
+      &::before {
+        left: 17px;
+        background: $color-button-blue;
+      }
+      &::after {
+        background: #c0beff;
+      }
+    }
+
+    &:focus + label::before {
+      background: $color-button-blue;
+    }
+  }
+}
+
+// 버튼
+.blue-btn {
+  @include button-l;
+  min-width: 112px;
+  background: $color-button-blue;
+  color: $color-white;
+}
+.gray-btn {
+  @include button-l;
+  min-width: 112px;
+  background: $color-gray-9;
+  color: $color-white;
+}
+
+.border-btn {
+  @include button-s;
+  border: 1px solid $color-button-blue;
+  color: $color-button-blue;
+}
+
+// 카피라이트
+.copyright {
+  color: $color-gray-9;
+  font-size: 1.2rem;
+  text-align: center;
+}
+
+// 브래드크럼
+.breadcrumb {
+  @include d-flex(start, center);
+
+  li {
+    font-size: 1.6rem;
+    &::after {
+      content: ">";
+      display: inline-block;
+      margin: 0 6px;
+    }
+    &:last-of-type::after {
+      display: none;
+    }
+  }
+}
+
+// dropdown
+.common-dropdown {
+  position: relative;
+  min-width: 160px;
+
+  &__btn {
+    width: 100%;
+    padding: 10px 17px;
+    background: url($img + "dropdown_btn.svg") no-repeat right 12px center;
+    border: 1px solid $color-border;
+    border-radius: 6px;
+    font-size: 1.4rem;
+    box-sizing: border-box;
+  }
+
+  &__list {
+    position: absolute;
+    top: 44px;
+    left: 0;
+    z-index: -1;
+    width: 100%;
+    padding: 5px;
+    background: $color-white;
+    border: 1px solid $color-border;
+    border-radius: 6px;
+    transform: scaleY(0);
+    transform-origin: top center;
+    transition: all 0.3s;
+    box-sizing: border-box;
+
+    &.active {
+      z-index: 3;
+      transform: scaleY(1);
+    }
+
+    &--item {
+      width: 100%;
+      padding: 8px 12px;
+      border-radius: 6px;
+      font-size: 1.4rem;
+      box-sizing: border-box;
+
+      &:hover {
+        background: $color-button-blue;
+        color: $color-white;
+      }
+    }
+  }
+}
+
+// 공통 목록
+.common-table {
+  padding: 20px 0;
+  padding-bottom: 10px;
+  background: $color-white;
+  border: 1px solid $color-border;
+
+  // 총건수
+  &__total {
+    width: 15%;
+    font-size: 1.4rem;
+    font-weight: 700;
+  }
+
+  // 공통 검색
+  &__search-area {
+    @include d-flex(between, center);
+    margin-bottom: 20px;
+    padding: 0 20px;
+  }
+  &__search-bar {
+    @include d-flex(start, center);
+    width: 85%;
+
+    .common-input {
+      width: calc(100% - 486px);
+      input {
+        padding: 10px 17px;
+        font-size: 1.4rem;
+      }
+    }
+
+    .border-btn {
+      height: 42px;
+      padding: 0 20px;
+      font-size: 1.4rem;
+    }
+    &--btn {
+      width: 120px;
+    }
+    .other-btn {
+      width: 170px;
+    }
+  }
+  // 표
+  table {
+    width: 100%;
+    table-layout: fixed;
+
+    th {
+      position: relative;
+      height: 54px;
+      padding-left: 36px;
+      background: $color-gray-f7;
+      border-top: 1px solid $color-border-table;
+      border-bottom: 1px solid $color-border-table;
+      font-size: 1.4rem;
+      font-weight: 700;
+      text-align: left;
+      vertical-align: middle;
+      cursor: pointer;
+
+      &::after {
+        @include position-center-y;
+        right: 0;
+        content: "";
+        width: 2px;
+        height: 12px;
+        background: $color-gray-c8;
+      }
+
+      &:first-of-type,
+      &:last-of-type {
+        &::after {
+          display: none;
+        }
+      }
+
+      &:first-of-type {
+        padding: 0;
+      }
+    }
+
+    td {
+      @include ellipsis;
+      padding: 15px 10px 15px 36px;
+      border-bottom: 1px solid $color-border;
+      font-size: 1.4rem;
+      &:first-of-type {
+        padding: 15px 0;
+      }
+    }
+
+    .common-check {
+      input + label {
+        padding: 0;
+        width: 24px;
+        margin: 0 auto;
+        text-indent: -9999px;
+        overflow: hidden;
+      }
+    }
+  }
+
+  // 하단영역
+  &__bottom {
+    @include d-flex(end, center);
+    padding-top: 10px;
+    padding-right: 10px;
+
+    &-dropdown {
+      margin-right: 30px;
+
+      .common-dropdown__list {
+        top: -197px;
+        transform-origin: bottom center;
+      }
+    }
+
+    // 페이지네이션
+    &-pagenation {
+      @include d-flex(start, center);
+
+      &--prev {
+        img {
+          transform: rotate(180deg);
+        }
+      }
+
+      p {
+        margin: 0 10px;
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+
+// 공통 마진
+.mr-12 {
+  margin-right: 12px;
+}
+.mr-16 {
+  margin-right: 16px;
+}
+.mr-70 {
+  margin-right: 70px;
+}
+.mr-100 {
+  margin-right: 100px;
+}
+.mb-20 {
+  margin-bottom: 20px;
+}
+.mb-30 {
+  margin-bottom: 30px;
+}
+
+// 공통 width
+.w-30 {
+  width: 30%;
+}
+.w-50 {
+  width: 50%;
+}
+
+.color-blue {
+  color: $color-button-blue;
+}
+
+// 등록버튼
+.write-page-btn {
+  width: 112px;
+  margin: 10px 0 0 auto;
+}
+
+// 등록 상세 공통
+.page-wrap {
+  width: 100%;
+  &__row {
+    @include d-flex(start, stretch);
+    border-bottom: 1px solid $color-border;
+
+    &:first-of-type {
+      border-top: 1px solid $color-border;
+    }
+
+    &--type {
+      @include d-flex(start, center);
+      width: 15%;
+      padding: 0 20px;
+      background: $color-border-table;
+      font-size: 1.4rem;
+      font-weight: 700;
+      box-sizing: border-box;
+    }
+    &--substance {
+      width: 85%;
+      padding: 15px 20px;
+      background: $color-white;
+      font-size: 1.4rem;
+      box-sizing: border-box;
+
+      .page-wrap__link {
+        width: 130px;
+      }
+    }
+    &.w-50 {
+      border-top: none;
+      .page-wrap__row--type {
+        width: 30%;
+      }
+      .page-wrap__row--substance {
+        width: 70%;
+      }
+    }
+  }
+  &.write-page {
+    .common-input {
+      width: 60%;
+      input {
+        padding: 10px;
+        font-size: 1.4rem;
+      }
+    }
+  }
+}
+.btn-group {
+  @include d-flex(end, center);
+  margin-top: 16px;
+}
+.d-flex {
+  @include d-flex(start, center);
+}
+
+// tab
+.common-tab {
+  @include d-flex(start, center);
+  display: inline-flex;
+  margin-bottom: 16px;
+  border: 1px solid $color-button-blue;
+  border-radius: 4px;
+  overflow: hidden;
+
+  li:last-of-type a {
+    border-right: none;
+  }
+
+  &__item {
+    display: block;
+    min-width: 140px;
+    padding: 13px 30px;
+    background: $color-white;
+    border-right: 1px solid rgba(88, 85, 255, 0.2);
+    color: $color-button-blue;
+    font-size: 1.5rem;
+    font-weight: 500;
+    text-align: center;
+    box-sizing: border-box;
+
+    &.active {
+      background: rgba(88, 85, 255, 0.2);
+    }
+  }
+}
+
+// 공통 알럿
+.common-alert {
+  position: relative;
+  width: 400px;
+  padding: 45px 70px 33px;
+  border-radius: 8px;
+  background: $color-white;
+  box-sizing: border-box;
+
+  &-background {
+    @include position-center-xy;
+    @include d-flex(center, center);
+    display: none;
+    position: fixed;
+    z-index: 10;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(58, 53, 65, 0.5);
+
+    &.active {
+      display: flex;
+    }
+  }
+
+  &__desc {
+    font-size: 2.4rem;
+    font-weight: 500;
+    text-align: center;
+  }
+  //메세지
+  &__msg {
+    margin: 35px 0;
+    font-size: 1.6rem;
+    text-align: center;
+  }
+  // 하단버튼
+  &__btn-group {
+    @include d-flex(center, center);
+
+    button:first-of-type:not(:last-of-type) {
+      margin-right: 8px;
+    }
+  }
+  // 닫기
+  &__close-btn {
+    position: absolute;
+    top: 26px;
+    right: 26px;
+    width: 24px;
+    height: 24px;
+    background: url($img + "close_icon.svg") no-repeat center;
+    background-size: cover;
+    text-indent: -9999px;
+    overflow: hidden;
+  }
+}

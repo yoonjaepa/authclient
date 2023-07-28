@@ -1,0 +1,66 @@
+.login {
+  width: 458px;
+  padding: 32px;
+  background: $color-white;
+  border: 1px solid $color-border;
+  box-sizing: border-box;
+
+  &-wrap {
+    @include d-flex(center, center);
+  }
+
+  // 로고
+  &__logo {
+    @include d-flex(center, center);
+    flex-direction: column;
+    margin-bottom: 32px;
+    font-size: 2rem;
+    font-weight: 500;
+
+    img {
+      margin-bottom: 4px;
+    }
+  }
+
+  // 입력필드
+  &-input-box {
+    margin-bottom: 25px;
+    &__id {
+      margin-bottom: 16px;
+    }
+    &__pw {
+      position: relative;
+      margin-bottom: 8px;
+    }
+    // 눈 버튼
+    .eye-btn {
+      @include position-center-y;
+      right: 12px;
+      width: 24px;
+      height: 24px;
+      text-indent: -9999px;
+      overflow: hidden;
+
+      &.visible-btn {
+        background: url($img + "visible_icon.svg") no-repeat center;
+        background-size: cover;
+      }
+
+      &.hidden-btn {
+        background: url($img + "hidden_icon.svg") no-repeat center;
+        background-size: cover;
+      }
+    }
+    // 설명글
+    &__notice {
+      margin-bottom: 16px;
+      font-size: 1.2rem;
+    }
+  }
+
+  // 버튼
+  &-btn {
+    width: 100%;
+    margin-bottom: 32px;
+  }
+}

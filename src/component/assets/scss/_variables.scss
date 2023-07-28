@@ -1,0 +1,33 @@
+// 프로젝트 사용 변수
+
+// 컨텐츠 크기
+$container-width: 1280px;
+
+// 컬러 (메인 및 서브 컬러 설정)
+$color-black: #000;
+$color-black-3a: #3a3541;
+$color-white: #fff;
+$color-gray-9: #999;
+$color-gray-c8: #c8c8c8;
+$color-gray-f7: #f7f7f7;
+$color-black-48: #484848;
+$color-background: #f2f6ff;
+$color-border: #b5b5b5;
+$color-border-table: #e5e5e5;
+$color-button-blue: #5855ff;
+
+// 폰트
+$base-font: 10px;
+$noto-sans: "Noto Sans KR", sans-serif;
+// 실제 적용시 알기 쉽게 font-family > '폰트명' 으로 수정 base.scss 에서 폰트 패밀리 바꿔주기
+// ex) $gmarketsasns: 'GmarketSans', sans-serif;
+
+// 반응형
+$breakpoint-pc: 1024px; // 1024px ~
+$breakpoint-tablet: 768px; // 768px ~ 1023px
+$breakpoint-mobile: 360px; // 360px ~ 767px
+$breakpoint-smallest: 320px; //320px ~ 359px
+
+// 이미지경로
+// background: url($img + '이미지명.png');
+$img: "../images/";
